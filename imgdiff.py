@@ -10,7 +10,7 @@ def PrepareHomepath(p):
     config = os.path.join(p, "config")
     pathlib.Path(config).mkdir(parents=True, exist_ok=True)
     mydir = os.path.dirname(__file__)
-    for f in ("autogen.cfg", "imgdiff.cfg"):
+    for f in ("autogen.cfg", "imgdiff.cfg", "schedule_cmd.cfg"):
         shutil.copy(os.path.join(mydir, f), os.path.join(config, f))
 
 

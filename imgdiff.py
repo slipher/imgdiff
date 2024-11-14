@@ -21,7 +21,6 @@ def FormCommands(cmdt, paths):
     cmds = [""] * len(paths)
     inject_alts = ["-homepath" + ARGSEP + p for p in paths]
     injected = False
-    print(repr(cmdt))
     while '{' in cmdt:
         i = cmdt.index('{')
         cmds = [c + cmdt[:i] for c in cmds]

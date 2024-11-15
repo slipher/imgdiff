@@ -44,10 +44,12 @@ def Main(args):
     isep = args.index("--")
     paths = [os.path.abspath(p) for p in args[1:isep]]
     cmds = FormCommands(args[isep+1:], paths)
+    nospam = os.environ.copy()
+    nospam["MSYSTEM"] = "MINGW"
     for i, (path, cmd) in enumerate(zip(paths, cmds)):
         print("Running config #%d: %s" % (i, cmd))
         PrepareHomepath(path)
-        subprocess.check_call(cmd)
+        subprocess.check_call(cmd, env=nospam)
 
 
 if __name__ == "__main__":

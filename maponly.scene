@@ -1,0 +1,50 @@
+2 $mapcmd$ plat23
+9 SVP 182 2423 95 -59 17
+// heat haze on edges of view buggy if view sized down
+5 screenshotjpeg plat23-heathaze-edges
+
+// beware: color grades
+2 $mapcmd$ atcshd
+9 SVP -511 479 438 -51 36
+5 screenshotjpeg atcshd-outside
+2 SVP 688 -778 -158 -167 14
+5 screenshotjpeg atcshd-fog
+
+2 $mapcmd$ vega
+9 SVP 1230 284 347 -82 16
+5 screenshotjpeg vega-vertexlit-console // implicit vertex lighting
+
+2 $mapcmd$ station15
+9 SVP 47 -1507 27 75 55
+5 screenshotjpeg station15-vertexlit-veg // non-lightmapped vertex-lit plants and lightmapped vertex-lit tree
+
+2 $mapcmd$ pulse
+9 SVP 7601 -1917 -1239 -16 11
+5 screenshotjpeg pulse-lightstyle
+2 SVP 3577 -3059 -1307 -72 19
+5 screenshotjpeg pulse-water
+2 SVP 4236 -1657 -710 126 2
+5 screenshotjpeg pulse-windowglass // bad deluxemaps bug
+2 SVP 3339 1064 -1641 -157 55
+5 screenshotjpeg pulse-fog-pit
+2 SVP 4822 -1312 -1314 98 13
+// wrong color with r_highPrecisionRendering 0 and new 'simple' full-range overbright implementation
+5 screenshotjpeg pulse-lowprecision-clamping
+
+2 $mapcmd$ procyon
+9 SVP -1064 307 167 -3 -13
+5 screenshotjpeg procyon-starchart // pointless fullbright lightmap stage
+2 SVP -955 3443 276 94 7
+// exhibits noise with r_highPrecisionRendering 0 and original full-range overbright implementation
+5 screenshotjpeg procyon-lowprecision-noise
+
+2 $mapcmd$ metro-b1-2
+9 SVP 2171 -709 -279 106 3
+5 screenshotjpeg metro-handlightstyles // "light styles" written by hand
+2 SVP -1172 627 107 94 -21
+5 screenshotjpeg metro-lightstyle // q3map2 light style
+
+2 $mapcmd$ zandronum
+9 SVP -175 -2529 -82 -97 3
+// with overbright clamping on, nicholas cage's forehead looks all washed out iff bloom is on
+5 screenshotjpeg zandronum-bloom-cage

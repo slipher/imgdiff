@@ -1,9 +1,16 @@
+import math
 import os
 import pathlib
 import re
 import shutil
 import subprocess
 import sys
+
+
+def TruncateAngle(s):
+    a = float(s)
+    ticks = math.trunc(a / 360 * 65536)
+    return str(ticks / 65536 * 360)
 
 
 def PrepareHomepath(p):
@@ -13,6 +20,24 @@ def PrepareHomepath(p):
     for f in os.listdir(mydir):
         if f.endswith(".cfg"):
             shutil.copy(os.path.join(mydir, f), os.path.join(config, f))
+        if f.endswith(".scene"):
+            with open(os.path.join(mydir, f)) as src:
+                with open(os.path.join(config, f + ".cfg"), "w") as out:
+                    for line in src:
+                        line = line.strip()
+                        if not line or line.startswith("//"):
+                            continue
+                        m = re.match("(\d+)\s", line)
+                        delay = m.group(1)
+                        cmd = line[m.end():]
+                        m = re.match("\s*SVP\s", cmd)
+                        if m:
+                            x, y, z, yaw, pitch = cmd[m.end():].split()
+                            yaw = TruncateAngle(yaw)
+                            pitch = TruncateAngle(pitch)
+                            cmd = "setviewpos %s %s %s %s %s" % (x, y, z, yaw, pitch)
+                        print("exec -q schedule_cmd.cfg", delay, cmd, file=out)
+                        print("exec -q schedule_cmd.cfg", file=out)
 
 
 # TODO: alternate version with the whole command line in 1 arg and shell=True (without -- maybe?)

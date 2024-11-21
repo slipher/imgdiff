@@ -1,0 +1,34 @@
+// FIXME: timing is off if it's not the first scene
+2 $mapcmd$ plat23
+9 devteam h
+5 SVP -2247 2214 256 -151 34
+0 give momentum
+0 give funds
+5 buy +psaw
+5 +attack
+// crappy dlight tile selection on blade
+17 screenshotjpeg plat23-dlight-psaw
+
+2 $mapcmd$ hq-beta28
+9 SVP 285 117 -43 -167 -6
+// entity "constantLight" with excessive brightness
+5 screenshotjpeg hqbeta28-dlight-mapent
+
+2 $mapcmd$ nano
+9 SVP -40 1911 119 97 6
+5 screenshotjpeg nano-overmind
+
+2 $mapcmd$ zittrig-arena
+9 SVP 1201 -301 -338 87 0
+// glowmap-like stage wrongly scaled with original full-range overbright implementation
+5 screenshotjpeg zittrig-controlpanel
+
+2 $mapcmd$ pulse
+9 SVP 7783 -1619 -1386 85 1
+5 screenshotjpeg pulse-portal-hbase
+2 SVP 7979 -1657 -1418 56 -23
+5 screenshotjpeg pulse-portal-abase
+
+2 $mapcmd$ metro-b1-2
+9 SVP -837 -893 191 16 18
+10 screenshotjpeg metro-lightflare-bad // light flare occlusion not working as desired

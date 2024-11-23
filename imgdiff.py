@@ -1,3 +1,4 @@
+import argparse
 import math
 import os
 import pathlib
@@ -13,7 +14,7 @@ def TruncateAngle(s):
     return str(ticks / 65536 * 360)
 
 
-def PrepareHomepath(p):
+def PrepareHomepath(p, shotrx):
     config = os.path.join(p, "config")
     pathlib.Path(config).mkdir(parents=True, exist_ok=True)
     mydir = os.path.dirname(os.path.realpath(__file__))
@@ -26,21 +27,38 @@ def PrepareHomepath(p):
             # assume comment markers won't be escaped or found in strings
             text = re.sub(r"//.*|/\*(.|\n)*?\*/", "", text)
             with open(os.path.join(config, f + ".cfg"), "w") as out:
-                for line in text.splitlines():
+                wantmap = True
+                outlines = []
+                for line in text.splitlines() + ["0 M dummy"]:
                     line = line.strip()
                     if not line:
                         continue
                     m = re.match("(\d+)\s", line)
                     delay = m.group(1)
                     cmd = line[m.end():].lstrip()
-                    m = re.match("SVP\s", cmd)
-                    if m:
-                        x, y, z, yaw, pitch = cmd[m.end():].split()
+                    words = cmd.split()
+                    if words[0] == "SVP":
+                        x, y, z, yaw, pitch = words[1:]
                         yaw = TruncateAngle(yaw)
                         pitch = TruncateAngle(pitch)
                         cmd = "setviewpos %s %s %s %s %s" % (x, y, z, yaw, pitch)
-                    print("exec -q schedule_cmd.cfg", delay, cmd, file=out)
-                    print("exec -q schedule_cmd.cfg", file=out)
+                    elif words[0] == "M":
+                        if wantmap:
+                            wantmap = False
+                            for ln in outlines:
+                                print(ln, file=out)
+                        outlines = []
+                        mapname, = words[1:]
+                        cmd = "$mapcmd$ " + mapname
+                    elif words[0] == "SHOT":
+                        shotname, = words[1:]
+                        if re.search(shotrx, shotname):
+                            wantmap = True
+                            cmd = "screenshotjpeg " + shotname
+                        else:
+                            cmd = "echo Omitting screenshot " + shotname
+                    outlines.append("exec -q schedule_cmd.cfg %s %s" %(delay, cmd))
+                    outlines.append("exec -q schedule_cmd.cfg")
 
 
 # TODO: alternate version with the whole command line in 1 arg and shell=True (without -- maybe?)
@@ -70,15 +88,19 @@ def FormCommands(cmdt, paths):
 
 def Main(args):
     isep = args.index("--")
-    paths = [os.path.abspath(p) for p in args[1:isep]]
+    ap = argparse.ArgumentParser()
+    ap.add_argument("-f", "--screenshot-filter", type=str, default="")
+    ap.add_argument("configname", nargs="*")
+    pa = ap.parse_args(args[:isep])
+    paths = [os.path.abspath(p) for p in pa.configname]
     cmds = FormCommands(args[isep+1:], paths)
     nospam = os.environ.copy()
     nospam["MSYSTEM"] = "MINGW"
     for i, (path, cmd) in enumerate(zip(paths, cmds)):
         print("Running config #%d: %s" % (i, cmd))
-        PrepareHomepath(path)
+        PrepareHomepath(path, pa.screenshot_filter)
         subprocess.check_call(cmd, env=nospam)
 
 
 if __name__ == "__main__":
-    Main(sys.argv)
+    Main(sys.argv[1:])

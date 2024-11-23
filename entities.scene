@@ -25,9 +25,9 @@
 
 2 M pulse
 9 SVP 7783 -1619 -1386 85 1
-5 SHOT pulse-portal-hbase
+8 SHOT pulse-portal-hbase
 2 SVP 7979 -1657 -1418 56 -23
-5 SHOT pulse-portal-abase
+8 SHOT pulse-portal-abase
 
 2 M metro-b1-2
 9 SVP -837 -893 191 16 18

@@ -1,0 +1,13 @@
+// requires plat23 b11, the only map pak with local color grades
+// https://cdn.unvanquished.net/unvanquished_0.24.0_universal/pkg/map-plat23_b11.pk3
+// (rename to .dpk)
+// difference is subtle, small compared to rooms' lighting differences
+// can use r_lightMode 0 to ensure you see it
+2 M plat23
+9 team h
+0 noclip
+20 class rifle
+80 SVP 2867 1793 250 -156 21
+200 SHOT plat23b11-cgrade-local-red
+5 SVP -2395 2126 228 106 7
+200 SHOT plat23b11-cgrade-local-blue

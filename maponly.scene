@@ -2,6 +2,10 @@
 9 SVP 182 2423 95 -59 17
 // heat haze on edges of view buggy if view sized down
 5 SHOT plat23-heathaze-edges
+2 SVP 98 2185 15 -36 25
+// arc-shaped artifacts on floor grate texture
+// worse with reliefmapping enabled
+5 SHOT plat23-grate-aliasing
 
 // beware: color grades
 2 M atcshd
@@ -17,6 +21,10 @@
 2 M station15
 9 SVP 47 -1507 27 75 55
 5 SHOT station15-vertexlit-veg // non-lightmapped vertex-lit plants and lightmapped vertex-lit tree
+
+2 M spacetracks
+9 SVP 1642 145 236 -171 -20
+5 SHOT spacetracks-aliasing-jaggies
 
 2 M pulse
 9 SVP 7601 -1917 -1239 -16 11

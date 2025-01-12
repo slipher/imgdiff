@@ -13,7 +13,9 @@ def TruncateAngle(s):
     return str(ticks / 65536 * 360)
 
 
-def PrepareHomepath(p, shotrx):
+def PrepareHomepath(p, wipe, shotrx):
+    if wipe and os.path.exists(p):
+        shutil.rmtree(p) # errors on non-directory
     config = os.path.join(p, "config")
     os.makedirs(config, exist_ok=True)
     mydir = os.path.dirname(os.path.realpath(__file__))
@@ -89,6 +91,7 @@ def Main(args):
     isep = args.index("--")
     ap = argparse.ArgumentParser()
     ap.add_argument("-f", "--screenshot-filter", type=str, default="")
+    ap.add_argument("-w", "--wipe", action="store_true")
     ap.add_argument("configname", nargs="*")
     pa = ap.parse_args(args[:isep])
     paths = [os.path.abspath(p) for p in pa.configname]
@@ -97,7 +100,7 @@ def Main(args):
     nospam["MSYSTEM"] = "MINGW"
     for i, (path, cmd) in enumerate(zip(paths, cmds)):
         print("Running config #%d: %s" % (i, cmd))
-        PrepareHomepath(path, pa.screenshot_filter)
+        PrepareHomepath(path, pa.wipe, pa.screenshot_filter)
         subprocess.check_call(cmd, env=nospam)
 
 

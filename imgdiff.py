@@ -1,7 +1,6 @@
 import argparse
 import math
 import os
-import pathlib
 import re
 import shutil
 import subprocess
@@ -16,7 +15,7 @@ def TruncateAngle(s):
 
 def PrepareHomepath(p, shotrx):
     config = os.path.join(p, "config")
-    pathlib.Path(config).mkdir(parents=True, exist_ok=True)
+    os.makedirs(config, exist_ok=True)
     mydir = os.path.dirname(os.path.realpath(__file__))
     for f in os.listdir(mydir):
         if f.endswith(".cfg"):

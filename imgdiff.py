@@ -21,7 +21,7 @@ def PrepareHomepath(p, wipe, shotrx):
     mydir = os.path.dirname(os.path.realpath(__file__))
     for f in os.listdir(mydir):
         if f.endswith(".cfg"):
-            shutil.copy(os.path.join(mydir, f), os.path.join(config, f))
+            shutil.copy(os.path.join(mydir, f), config)
         if f.endswith(".scene"):
             with open(os.path.join(mydir, f)) as src:
                 text = src.read()

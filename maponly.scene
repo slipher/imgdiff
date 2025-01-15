@@ -21,6 +21,8 @@
 2 M station15
 9 SVP 47 -1507 27 75 55
 5 SHOT station15-vertexlit-veg // non-lightmapped vertex-lit plants and lightmapped vertex-lit tree
+2 SVP -1805 -3107 -44 -100 3
+5 SHOT station15-autosprite1-sun // supposedly uses something called a "sky portal"?
 
 2 M spacetracks
 9 SVP 1642 145 236 -171 -20
@@ -51,6 +53,11 @@
 5 SHOT metro-handlightstyles // "light styles" written by hand
 2 SVP -1172 627 107 94 -21
 5 SHOT metro-lightstyle // q3map2 light style
+2 SVP -110 631 -126 97 19
+// central flame, chains, and candle flames are autosprite2
+// chains have lightmaps
+// also has light styles
+5 SHOT metro-autosprite2-flame-chains
 
 2 M zandronum
 9 SVP -175 -2529 -82 -97 3

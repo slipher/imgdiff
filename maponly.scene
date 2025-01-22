@@ -1,3 +1,4 @@
+// beware: has global colorgrade
 2 M plat23
 9 SVP 182 2423 95 -59 17
 // heat haze on edges of view buggy if view sized down
@@ -7,7 +8,7 @@
 // worse with reliefmapping enabled
 5 SHOT plat23-grate-aliasing
 
-// beware: color grades
+// beware: has global colorgrade
 2 M atcshd
 9 SVP -511 479 438 -51 36
 5 SHOT atcshd-outside

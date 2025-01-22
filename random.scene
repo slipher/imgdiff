@@ -1,0 +1,6 @@
+// scenes that can't be automatically diffed due to randomness
+
+2 M sectorb17
+9 SVP -779 1655 490 15 -38
+// wait for the smoke to come out!
+100 SHOT sectorb17-smoke-particle-reallight // realLight particle keyword

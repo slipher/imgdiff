@@ -64,3 +64,8 @@
 9 SVP -175 -2529 -82 -97 3
 // with overbright clamping on, nicholas cage's forehead looks all washed out iff bloom is on
 5 SHOT zandronum-bloom-cage
+
+// map with no lightmap
+2 M list-materials
+9 SVP 457 -2139 71 -179 50
+5 SHOT listmaterials-nolightmap

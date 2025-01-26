@@ -1,3 +1,5 @@
+// entities: scenes involving any entity, excluding ones with randomness
+
 // FIXME: timing is off if it's not the first scene
 2 M plat23
 9 devteam h

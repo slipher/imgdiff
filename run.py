@@ -1,6 +1,7 @@
 import argparse
 import math
 import os
+import platform
 import re
 import shutil
 import subprocess
@@ -62,12 +63,26 @@ def PrepareHomepath(p, wipe, shotrx):
                     outlines.append("exec -q schedule_cmd.cfg")
 
 
+def DefaultHomepath():
+    if platform.system() == "Windows":
+        return os.path.expanduser(r"~\Documents\My Games\Unvanquished")
+    elif platform.system() == "Darwin":
+        return os.path.expanduser("~/Library/Application Support/Unvanquished")
+    else:
+        return os.environ.get("XDG_DATA_HOME", os.environ.get("HOME")) + "/.local/share/unvanquished"
+
+
 # TODO: alternate version with the whole command line in 1 arg and shell=True (without -- maybe?)
-def FormCommands(cmdt, paths):
+def FormCommands(cmdt, paths, homepaks):
     ARGSEP = "\0"
     cmdt = ARGSEP.join(cmdt)
     cmds = [""] * len(paths)
-    inject_alts = ["-homepath" + ARGSEP + p for p in paths]
+    fixed_args = "-homepath" + ARGSEP
+    if homepaks:
+        hp = ARGSEP + "-pakpath" + ARGSEP + os.path.join(DefaultHomepath(), "pkg")
+    else:
+        hp = ""
+    inject_alts = ["-homepath" + ARGSEP + p + hp for p in paths]
     injected = False
     while '{' in cmdt:
         i = cmdt.index('{')
@@ -91,11 +106,12 @@ def Main(args):
     isep = args.index("--")
     ap = argparse.ArgumentParser()
     ap.add_argument("-f", "--screenshot-filter", type=str, default="")
+    ap.add_argument("-H", "--homepath-paks", action="store_true")
     ap.add_argument("-w", "--wipe", action="store_true")
     ap.add_argument("configname", nargs="*")
     pa = ap.parse_args(args[:isep])
     paths = [os.path.abspath(p) for p in pa.configname]
-    cmds = FormCommands(args[isep+1:], paths)
+    cmds = FormCommands(args[isep+1:], paths, pa.homepath_paks)
     nospam = os.environ.copy()
     nospam["MSYSTEM"] = "MINGW"
     for i, (path, cmd) in enumerate(zip(paths, cmds)):

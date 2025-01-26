@@ -7,7 +7,7 @@
 5 buy +psaw
 5 +attack
 // crappy dlight tile selection on blade
-17 SHOT plat23-dlight-psaw
+16 SHOT plat23-dlight-psaw
 
 2 M hq-beta28
 9 SVP 285 117 -43 -167 -6

@@ -1,12 +1,15 @@
 // beware: has global colorgrade
 2 M plat23
 9 SVP 182 2423 95 -59 17
-// heat haze on edges of view buggy if view sized down
+// heat haze on edges of view buggy if view sized down https://github.com/DaemonEngine/Daemon/issues/1437
 5 SHOT plat23-heathaze-edges
 2 SVP 98 2185 15 -36 25
 // arc-shaped artifacts on floor grate texture
 // worse with reliefmapping enabled
 5 SHOT plat23-grate-aliasing
+2 SVP 263 1406 502 -98 7
+// https://github.com/DaemonEngine/Daemon/issues/1249
+5 SHOT plat23-vis-unphysical-sky // sky "hides" rooms due to vis
 
 // beware: has global colorgrade
 2 M atcshd

@@ -4,3 +4,21 @@
 9 SVP -779 1655 490 15 -38
 // wait for the smoke to come out!
 100 SHOT sectorb17-smoke-particle-reallight // realLight particle keyword
+
+2 M plat23
+9 devteam h
+5 SVP -2247 2214 256 -151 34
+0 give momentum
+0 give funds
+5 buy +prifle
+2 SVP -20 1665 32 -9 1
+5 +attack
+30 -attack
+2 SVP 275 1423 32 63 6
+8 SHOT plat23-dlight-prifle-trail
+2 SVP -2247 2214 256 -151 34
+5 buy +flamer
+2 SVP -342 1833 -140 -10 5
+50 +attack
+1 -attack
+13 SHOT plat23-dlight-flamer-particle

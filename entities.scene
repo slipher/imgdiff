@@ -9,6 +9,7 @@
 5 buy +psaw
 5 +attack
 // crappy dlight tile selection on blade
+// no cgame randomness AFAIK but generates noise diffs >1.0
 16 SHOT plat23-dlight-psaw
 
 2 M hq-beta28

@@ -15,10 +15,13 @@
 5 +attack
 30 -attack
 2 SVP 275 1423 32 63 6
+// trail itself is random but dlight seems reliable
 8 SHOT plat23-dlight-prifle-trail
 2 SVP -2247 2214 256 -151 34
 5 buy +flamer
 2 SVP -342 1833 -140 -10 5
 50 +attack
 1 -attack
+// reading the particle file I think there's a bit of randomness in the dlight location
+// the flame textures are very random
 13 SHOT plat23-dlight-flamer-particle

@@ -35,3 +35,5 @@
 2 M metro-b1-2
 9 SVP -837 -893 191 16 18
 10 SHOT metro-lightflare-bad // light flare occlusion not working as desired
+
+// TODO: anthill or foggy for no light grid (+ no light map)

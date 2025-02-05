@@ -37,6 +37,12 @@
 5 SHOT pulse-lightstyle
 2 SVP 3577 -3059 -1307 -72 19
 5 SHOT pulse-water
+2 SVP 4149 -1101 -831 -117 29
+0 set common.fixedFrameTime 200 // max frame length (Com_ModifyMsec)
+225 set common.fixedFrameTime 25
+// not entirely maponly as particles can fly in
+// shows first 8 lines of text, 2nd playthrough
+5 SHOT pulse-loremipsum-scroll
 2 SVP 4236 -1657 -710 126 2
 5 SHOT pulse-windowglass // bad deluxemaps bug
 2 SVP 3339 1064 -1641 -157 55

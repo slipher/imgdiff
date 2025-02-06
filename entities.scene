@@ -36,4 +36,9 @@
 9 SVP -837 -893 191 16 18
 10 SHOT metro-lightflare-bad // light flare occlusion not working as desired
 
+2 M vega
+// viewpos from https://github.com/DaemonEngine/Daemon/issues/1545
+9 SVP 486 -57 96 147 24
+5 SHOT vega-floor
+
 // TODO: anthill or foggy for no light grid (+ no light map)

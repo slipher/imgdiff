@@ -69,6 +69,15 @@
 // also has light styles
 5 SHOT metro-autosprite2-flame-chains
 
+2 M eden
+// These two are 4 layers of additive tcmod environment textures over a black texture
+9 SVP -2250 -240 175 179 1
+5 SHOT eden-tcmod-environment-1
+2 SVP -2250 -240 246 175 21
+5 SHOT eden-tcmod-environment-2
+2 SVP -1253 1121 424 86 -9
+5 SHOT eden-fans // tcmod rotate
+
 2 M zandronum
 9 SVP -175 -2529 -82 -97 3
 // with overbright clamping on, nicholas cage's forehead looks all washed out iff bloom is on

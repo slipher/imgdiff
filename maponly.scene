@@ -78,6 +78,10 @@
 2 SVP -1253 1121 424 86 -9
 5 SHOT eden-fans // tcmod rotate
 
+2 M watah-b5
+9 SVP -2874 963 1144 77 3
+5 SHOT watah-translucent-sorting // https://github.com/DaemonEngine/Daemon/issues/1319
+
 2 M zandronum
 9 SVP -175 -2529 -82 -97 3
 // with overbright clamping on, nicholas cage's forehead looks all washed out iff bloom is on

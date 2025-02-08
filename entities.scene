@@ -11,6 +11,14 @@
 // crappy dlight tile selection on blade
 // no cgame randomness AFAIK but generates noise diffs >1.0
 16 SHOT plat23-dlight-psaw
+// egg shots for https://github.com/Unvanquished/Unvanquished/issues/3315
+20 team s
+20 SVP 2476 2273 138 86 0
+5 SHOT plat23-egg-close
+2 SVP 2469 2178 138 86 0
+5 SHOT plat23-egg-mid
+2 SVP 2357 1994 138 72 -4
+5 SHOT plat23-egg-far
 
 2 M hq-beta28
 9 SVP 285 117 -43 -167 -6
@@ -20,6 +28,17 @@
 2 M nano
 9 SVP -40 1911 119 97 6
 5 SHOT nano-overmind
+
+2 M chasm
+// egg shots for https://github.com/Unvanquished/Unvanquished/issues/3315
+9 SVP 977 2377 187 -9 0
+5 SHOT chasm-egg-closest
+2 SVP 906 2388 187 -9 0
+5 SHOT chasm-egg-close
+2 SVP 664 2426 187 -9 0
+5 SHOT chasm-egg-further
+2 SVP 388 2405 187 0 -9
+5 SHOT chasm-egg-furthest
 
 2 M forlorn
 9 devteam h

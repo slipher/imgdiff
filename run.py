@@ -119,7 +119,9 @@ def Main(args):
     for i, (path, cmd) in enumerate(zip(paths, cmds)):
         print("Running config #%d: %s" % (i, cmd))
         PrepareHomepath(path, pa.wipe, pa.screenshot_filter)
-        subprocess.check_call(cmd, env=nospam)
+        subprocess.check_call(cmd,
+                              env=nospam, # Suppress output on Windows
+                              stderr=subprocess.DEVNULL) # Suppress output on *nix
 
 
 if __name__ == "__main__":

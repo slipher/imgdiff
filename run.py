@@ -109,19 +109,22 @@ def Main(args):
     ap = argparse.ArgumentParser()
     ap.add_argument("-f", "--screenshot-filter", type=str, default="")
     ap.add_argument("-H", "--homepath-paks", action="store_true")
+    ap.add_argument("-s", "--spam", action="store_true")
     ap.add_argument("-w", "--wipe", action="store_true")
     ap.add_argument("configname", nargs="*")
     pa = ap.parse_args(args[:isep])
     paths = [os.path.abspath(p) for p in pa.configname]
     cmds = FormCommands(args[isep+1:], paths, pa.homepath_paks)
-    nospam = os.environ.copy()
-    nospam["MSYSTEM"] = "MINGW"
+    processkw = {}
+    if not pa.spam:
+        nospam = os.environ.copy()
+        nospam["MSYSTEM"] = "MINGW"
+        processkw["env"] = nospam # Suppress output on Windows
+        processkw["stderr"] = subprocess.DEVNULL # Suppress output on *nix
     for i, (path, cmd) in enumerate(zip(paths, cmds)):
         print("Running config #%d: %s" % (i, cmd))
         PrepareHomepath(path, pa.wipe, pa.screenshot_filter)
-        subprocess.check_call(cmd,
-                              env=nospam, # Suppress output on Windows
-                              stderr=subprocess.DEVNULL) # Suppress output on *nix
+        subprocess.check_call(cmd, **processkw)
 
 
 if __name__ == "__main__":

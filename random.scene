@@ -25,3 +25,20 @@
 // reading the particle file I think there's a bit of randomness in the dlight location
 // the flame textures are very random
 13 SHOT plat23-dlight-flamer-particle
+
+2 M forlorn
+9 devteam h
+5 SVP 2397 1194 320 135 2
+0 give momentum
+0 give funds
+5 buy +lcannon
+2 SVP 1494 1231 272 -94 -7
+5 +attack
+20 -attack
+// https://github.com/DaemonEngine/Daemon/issues/1079#issuecomment-2434479916
+6 SHOT forlorn-lcannon-window-translucent // luci missile in front
+2 SVP 1147 660 236 89 -16
+5 +attack // fire toward the window from outside the map
+20 -attack
+2 SVP 1173 1338 272 -94 -7
+5 SHOT forlorn-window-lcannon-translucent // window in front

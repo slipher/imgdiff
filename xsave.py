@@ -15,7 +15,7 @@ dstdir = os.path.join(mydir, "x", name)
 os.makedirs(dstdir, exist_ok=True)
 
 bins = re.compile(
-    "((daemon|crash_server|nacl_loader|[cs]game-native-exe)([.]exe)?|.*(?<!-stripped)[.](dll|nexe|so|dylib)|nacl_helper_bootstrap|nacl_loader-amd64[.].nexe)$")
+    "((daemon|crash_server|nacl_loader.*|[cs]game-native-exe)([.]exe)?|.*(?<!-stripped)[.](dll|nexe|so|dylib)|nacl_helper_bootstrap|nacl_loader-amd64[.].nexe)$")
 for f in files:
     if re.match(bins, f):
         shutil.copy2(os.path.join(srcdir, f), dstdir)

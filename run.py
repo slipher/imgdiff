@@ -21,11 +21,15 @@ def PrepareHomepath(p, wipe, shotrx):
         shutil.rmtree(p) # errors on non-directory
     config = os.path.join(p, "config")
     os.makedirs(config, exist_ok=True)
+    demos = os.path.join(p, "demos")
+    os.makedirs(demos, exist_ok=True)
     mydir = os.path.dirname(os.path.realpath(__file__))
     for f in os.listdir(mydir):
         if f.endswith(".cfg"):
             shutil.copy(os.path.join(mydir, f), config)
-        if f.endswith(".scene"):
+        elif f.endswith(".dm_86"):
+            shutil.copy(os.path.join(mydir, f), demos)
+        elif f.endswith(".scene"):
             with open(os.path.join(mydir, f)) as src:
                 text = src.read()
             # assume comment markers won't be escaped or found in strings

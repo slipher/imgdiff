@@ -1,7 +1,8 @@
 // entities: scenes involving any entity, excluding ones with randomness
 
 // FIXME: timing is off if it's not the first scene
-2 M plat23
+{
+2 $mapcmd$ plat23
 9 devteam h
 5 SVP -2247 2214 256 -151 34
 0 give momentum
@@ -19,17 +20,23 @@
 5 SHOT plat23-egg-mid
 2 SVP 2357 1994 138 72 -4
 5 SHOT plat23-egg-far
+}
 
-2 M hq-beta28
+{
+2 $mapcmd$ hq-beta28
 9 SVP 285 117 -43 -167 -6
 // entity "constantLight" with excessive brightness
 5 SHOT hqbeta28-dlight-mapent
+}
 
-2 M nano
+{
+2 $mapcmd$ nano
 9 SVP -40 1911 119 97 6
 5 SHOT nano-overmind
+}
 
-2 M chasm
+{
+2 $mapcmd$ chasm
 // egg shots for https://github.com/Unvanquished/Unvanquished/issues/3315
 9 SVP 977 2377 187 -9 0
 5 SHOT chasm-egg-closest
@@ -39,26 +46,34 @@
 5 SHOT chasm-egg-further
 2 SVP 388 2405 187 0 -9
 5 SHOT chasm-egg-furthest
+}
 
-
-2 M zittrig-arena
+{
+2 $mapcmd$ zittrig-arena
 9 SVP 1201 -301 -338 87 0
 // glowmap-like stage wrongly scaled with original full-range overbright implementation
 5 SHOT zittrig-controlpanel
+}
 
-2 M pulse
+{
+2 $mapcmd$ pulse
 9 SVP 7783 -1619 -1386 85 1
 8 SHOT pulse-portal-hbase
 2 SVP 7979 -1657 -1418 56 -23
 8 SHOT pulse-portal-abase
+}
 
-2 M metro-b1-2
+{
+2 $mapcmd$ metro-b1-2
 9 SVP -837 -893 191 16 18
 10 SHOT metro-lightflare-bad // light flare occlusion not working as desired
+}
 
-2 M vega
+{
+2 $mapcmd$ vega
 // viewpos from https://github.com/DaemonEngine/Daemon/issues/1545
 9 SVP 486 -57 96 147 24
 5 SHOT vega-floor
+}
 
 // TODO: anthill or foggy for no light grid (+ no light map)

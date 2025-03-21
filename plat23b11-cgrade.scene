@@ -3,7 +3,8 @@
 // (rename to .dpk)
 // difference is subtle, small compared to rooms' lighting differences
 // can use r_lightMode 0 to ensure you see it
-2 M plat23
+{
+2 $mapcmd$ plat23
 9 team h
 0 noclip
 20 class rifle
@@ -11,3 +12,4 @@
 200 SHOT plat23b11-cgrade-local-red
 5 SVP -2395 2126 228 106 7
 200 SHOT plat23b11-cgrade-local-blue
+}

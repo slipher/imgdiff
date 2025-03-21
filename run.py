@@ -34,39 +34,51 @@ def PrepareHomepath(p, wipe, shotrx):
                 text = src.read()
             # assume comment markers won't be escaped or found in strings
             text = re.sub(r"//.*|/\*(.|\n)*?\*/", "", text)
+
+            lines = []
+            group = 0
+            for line in text.splitlines():
+                line = line.strip()
+                if not line:
+                    continue
+                if line == "{":
+                    if group:
+                        raise Exception(f + ": recursive braced group not implemented")
+                    group += 1
+                    wantgroup = False
+                    grouplines = []
+                    continue
+                if line == "}":
+                    if group <= 0:
+                        raise Exception(f + ": unmatched '}'")
+                    group -= 1
+                    if wantgroup:
+                        lines += grouplines
+                    continue
+
+                m = re.match("(\d+)\s", line)
+                delay = m.group(1)
+                cmd = line[m.end():].lstrip()
+                words = cmd.split()
+                if words[0] == "SVP":
+                    x, y, z, yaw, pitch = words[1:]
+                    yaw = TruncateAngle(yaw)
+                    pitch = TruncateAngle(pitch)
+                    cmd = "setviewpos %s %s %s %s %s" % (x, y, z, yaw, pitch)
+                elif words[0] == "SHOT":
+                    shotname, = words[1:]
+                    if re.search(shotrx, shotname):
+                        wantgroup = True
+                        cmd = "screenshotjpeg " + shotname
+                    else:
+                        cmd = "echo Omitting screenshot " + shotname
+                b = grouplines if group else lines
+                b.append("exec -q schedule_cmd.cfg %s %s\n" %(delay, cmd))
+                b.append("exec -q schedule_cmd.cfg\n")
+            if group:
+                raise Exception(f + ": unmatched '{'")
             with open(os.path.join(config, f + ".cfg"), "w") as out:
-                wantmap = True
-                outlines = []
-                for line in text.splitlines() + ["0 M dummy"]:
-                    line = line.strip()
-                    if not line:
-                        continue
-                    m = re.match("(\d+)\s", line)
-                    delay = m.group(1)
-                    cmd = line[m.end():].lstrip()
-                    words = cmd.split()
-                    if words[0] == "SVP":
-                        x, y, z, yaw, pitch = words[1:]
-                        yaw = TruncateAngle(yaw)
-                        pitch = TruncateAngle(pitch)
-                        cmd = "setviewpos %s %s %s %s %s" % (x, y, z, yaw, pitch)
-                    elif words[0] == "M":
-                        if wantmap:
-                            wantmap = False
-                            for ln in outlines:
-                                print(ln, file=out)
-                        outlines = []
-                        mapname, = words[1:]
-                        cmd = "$mapcmd$ " + mapname
-                    elif words[0] == "SHOT":
-                        shotname, = words[1:]
-                        if re.search(shotrx, shotname):
-                            wantmap = True
-                            cmd = "screenshotjpeg " + shotname
-                        else:
-                            cmd = "echo Omitting screenshot " + shotname
-                    outlines.append("exec -q schedule_cmd.cfg %s %s" %(delay, cmd))
-                    outlines.append("exec -q schedule_cmd.cfg")
+                out.writelines(lines)
 
 
 def DefaultHomepath():

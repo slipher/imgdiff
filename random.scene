@@ -1,11 +1,14 @@
 // scenes that can't be automatically diffed due to randomness
 
-2 M sectorb17
+{
+2 $mapcmd$ sectorb17
 9 SVP -779 1655 490 15 -38
 // wait for the smoke to come out!
 100 SHOT sectorb17-smoke-particle-reallight // realLight particle keyword
+}
 
-2 M plat23
+{
+2 $mapcmd$ plat23
 9 devteam h
 5 SVP -2247 2214 256 -151 34
 0 give momentum
@@ -25,8 +28,10 @@
 // reading the particle file I think there's a bit of randomness in the dlight location
 // the flame textures are very random
 13 SHOT plat23-dlight-flamer-particle
+}
 
-2 M forlorn
+{
+2 $mapcmd$ forlorn
 9 devteam h
 5 SVP 2397 1194 320 135 2
 0 give momentum
@@ -42,3 +47,4 @@
 20 -attack
 2 SVP 1173 1338 272 -94 -7
 5 SHOT forlorn-window-lcannon-translucent // window in front
+}

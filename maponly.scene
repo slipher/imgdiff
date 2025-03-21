@@ -1,5 +1,6 @@
 // beware: has global colorgrade
-2 M plat23
+{
+2 $mapcmd$ plat23
 9 SVP 182 2423 95 -59 17
 // heat haze on edges of view buggy if view sized down https://github.com/DaemonEngine/Daemon/issues/1437
 5 SHOT plat23-heathaze-edges
@@ -10,29 +11,39 @@
 2 SVP 263 1406 502 -98 7
 // https://github.com/DaemonEngine/Daemon/issues/1249
 5 SHOT plat23-vis-unphysical-sky // sky "hides" rooms due to vis
+}
 
 // beware: has global colorgrade
-2 M atcshd
+{
+2 $mapcmd$ atcshd
 9 SVP -511 479 438 -51 36
 5 SHOT atcshd-outside
 2 SVP 688 -778 -158 -167 14
 5 SHOT atcshd-fog
+}
 
-2 M vega
+{
+2 $mapcmd$ vega
 9 SVP 1230 284 347 -82 16
 5 SHOT vega-vertexlit-console // implicit vertex lighting
+}
 
-2 M station15
+{
+2 $mapcmd$ station15
 9 SVP 47 -1507 27 75 55
 5 SHOT station15-vertexlit-veg // non-lightmapped vertex-lit plants and lightmapped vertex-lit tree
 2 SVP -1805 -3107 -44 -100 3
 5 SHOT station15-autosprite1-sun // supposedly uses something called a "sky portal"?
+}
 
-2 M spacetracks
+{
+2 $mapcmd$ spacetracks
 9 SVP 1642 145 236 -171 -20
 5 SHOT spacetracks-aliasing-jaggies
+}
 
-2 M pulse
+{
+2 $mapcmd$ pulse
 9 SVP 7601 -1917 -1239 -16 11
 5 SHOT pulse-lightstyle
 2 SVP 3577 -3059 -1307 -72 19
@@ -50,15 +61,19 @@
 2 SVP 4822 -1312 -1314 98 13
 // wrong color with r_highPrecisionRendering 0 and new 'simple' full-range overbright implementation
 5 SHOT pulse-lowprecision-clamping
+}
 
-2 M procyon
+{
+2 $mapcmd$ procyon
 9 SVP -1064 307 167 -3 -13
 5 SHOT procyon-starchart // pointless fullbright lightmap stage
 2 SVP -955 3443 276 94 7
 // exhibits noise with r_highPrecisionRendering 0 and original full-range overbright implementation
 5 SHOT procyon-lowprecision-noise
+}
 
-2 M metro-b1-2
+{
+2 $mapcmd$ metro-b1-2
 9 SVP 2171 -709 -279 106 3
 5 SHOT metro-handlightstyles // "light styles" written by hand
 2 SVP -1172 627 107 94 -21
@@ -68,8 +83,10 @@
 // chains have lightmaps
 // also has light styles
 5 SHOT metro-autosprite2-flame-chains
+}
 
-2 M eden
+{
+2 $mapcmd$ eden
 // These two are 4 layers of additive tcmod environment textures over a black texture
 9 SVP -2250 -240 175 179 1
 5 SHOT eden-tcmod-environment-1
@@ -77,17 +94,24 @@
 5 SHOT eden-tcmod-environment-2
 2 SVP -1253 1121 424 86 -9
 5 SHOT eden-fans // tcmod rotate
+}
 
-2 M watah-b5
+{
+2 $mapcmd$ watah-b5
 9 SVP -2874 963 1144 77 3
 5 SHOT watah-translucent-sorting // https://github.com/DaemonEngine/Daemon/issues/1319
+}
 
-2 M zandronum
+{
+2 $mapcmd$ zandronum
 9 SVP -175 -2529 -82 -97 3
 // with overbright clamping on, nicholas cage's forehead looks all washed out iff bloom is on
 5 SHOT zandronum-bloom-cage
+}
 
 // map with no lightmap
-2 M list-materials
+{
+2 $mapcmd$ list-materials
 9 SVP 457 -2139 71 -179 50
 5 SHOT listmaterials-nolightmap
+}
